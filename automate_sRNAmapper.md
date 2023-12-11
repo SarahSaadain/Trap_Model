@@ -1,4 +1,5 @@
 automate the proTRAC for all files
+Dspecies_automate.sh
 ```
 
 #!/bin/bash
