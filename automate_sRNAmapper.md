@@ -36,6 +36,11 @@ for folder in *_follicle/ *_ovary/; do
 done
 ```
 
+to have executing permissions do:
+```
+chmod +x automate.sh
+```
+
 
 run it
 ```
