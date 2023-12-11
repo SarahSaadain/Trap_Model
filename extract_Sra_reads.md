@@ -10,7 +10,9 @@ confirm the number of accessions is the same as on the homepage:
 wc -l SRR_numbers.txt
 ```
 
-go to ENA Browser (not NCBI, its unnecessary compliacted) and download all samples 
+go to ENA Browser (not NCBI, its unnecessary compliacted) and download all samples
+https://www.ebi.ac.uk/ena/browser/view/PRJNA675888
 
-go to ENA Browser and download all assemblies
+go to NCBI Browser and download all assemblies
+https://www.ncbi.nlm.nih.gov/bioproject/PRJNA675888/
 
