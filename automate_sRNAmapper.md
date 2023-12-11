@@ -1,4 +1,4 @@
-automate the proTRAC for all files
+automate the sRNAmapper for all files
 Dspecies_automate.sh
 ```
 
