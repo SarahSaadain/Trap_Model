@@ -1,7 +1,6 @@
 automate the sRNAmapper for all files
 Dspecies_automate.sh
 ```
-
 #!/bin/bash
 
 # Full path to sRNAmapper.pl
@@ -35,6 +34,49 @@ for folder in *_follicle/ *_ovary/; do
     fi
 done
 ```
+
+
+new way/not tested with new names/folder structure:
+```
+#!/bin/bash
+
+# Full path to sRNAmapper.pl
+sRNAmapper_path="/home/sarah/different_species/sRNAmapper.pl"
+
+# Find the genome file with a .fna extension in the ref directory
+genome_path=$(find ref -maxdepth 1 -type f -name "*.fna" | head -n 1)
+
+# Check if a .fna file was found
+if [ -z "$genome_path" ]; then
+    echo "No .fna file found in the ref directory."
+    exit 1
+fi
+
+# Iterate through the ovaries folder
+for fastq_file in *_ovaries*.fastq.gz; do
+    echo "Processing file: $fastq_file"
+    
+    # Extract the first 4 characters from the fastq file name
+    prefix=$(echo "$fastq_file" | cut -c 1-4)
+    
+    # Find the corresponding genome file with a matching prefix in the ref directory
+    matching_genome=$(find ref -maxdepth 1 -type f -name "${prefix}_ref*.fna" | head -n 1)
+    
+    if [ -n "$matching_genome" ]; then
+        echo "Matching Genome FNA: $matching_genome"
+
+        # Add your sRNAmapper.pl command with absolute path to genome file
+        # Example:
+        perl "$sRNAmapper_path" -input "$fastq_file" -genome "$matching_genome" -alignment best
+
+        echo "------------------------"  # Separator line
+    else
+        echo "No matching genome found for $fastq_file."
+    fi
+done
+```
+
+
 
 to have executing permissions do:
 ```
