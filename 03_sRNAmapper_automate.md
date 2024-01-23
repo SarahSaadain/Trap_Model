@@ -36,7 +36,7 @@ done
 ```
 
 
-new way/not tested with new names/folder structure:
+new way for the new names/folder structure:
 ```
 #!/bin/bash
 
