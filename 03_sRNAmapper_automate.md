@@ -36,8 +36,8 @@ done
 ```
 
 
-new way for the new names/folder structure:
-sRNAmapper_automate.sh
+new way for the new names/folder structure:  
+**sRNAmapper_automate.sh**
 ```
 #!/bin/bash
 
