@@ -45,7 +45,7 @@ new way for the new names/folder structure:
 sRNAmapper_path="/home/sarah/different_species/sRNAmapper.pl"
 
 # Iterate through the ovaries folder
-for fastq_file in ovaries/*.fastq.gz; do
+for fastq_file in ovaries/*.fastq; do
     echo "Processing file: $fastq_file"
     
     # Extract the first 4 characters from the fastq file name
@@ -59,14 +59,13 @@ for fastq_file in ovaries/*.fastq.gz; do
 
         # Add your sRNAmapper.pl command with absolute path to genome file
         # Example:
-        perl "$sRNAmapper_path" -input "$fastq_file" -genome "$matching_genome" -alignment best
+        perl "$sRNAmapper_path" -input "$fastq_file" -genome "$matching_genome" -format sam  -alignments best
 
         echo "------------------------"  # Separator line
     else
         echo "No matching genome found for $fastq_file."
     fi
 done
-
 
 ```
 
