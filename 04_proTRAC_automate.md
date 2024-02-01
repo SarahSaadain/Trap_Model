@@ -38,6 +38,13 @@ add execution permission:
 chmod +x proTRAC_automate.sh
 ```
 
+the one liner version for one file only
+```
+sudo perl proTRAC_2.4.3.pl -map ../../curana/Dana_ovaries_SRR23593057.sam -format SAM -genome ref/Dana_ref_GCA_018148915.1_ASM1814891v1_genomic.fna
+```
+
+
+
 run in the back:
 ```
 nohup ./proTRAC_automate.sh > Dyak_automate_proTRAC.log 2>&1 &
