@@ -81,3 +81,11 @@ run it
 ```
 nohup ./automate.sh > automate.log 2>&1 &
 ```
+
+
+one liner for trying single files and settings:
+```
+perl sRNAmapper.pl -input ovaries/trimmed/Dana_ovaries_SRR23593056_trimmed.fq -genome ref/Dana_ref_GCA_018148915.1_ASM1814891v1_genomic.fna -alignments best
+```
+
+
