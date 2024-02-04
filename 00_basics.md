@@ -1,6 +1,13 @@
-copy files from cluster:
+copy files from Roco to my computer:
 
-scp -o ProxyJump=_____@pgnport.vu-wien.ac.at sarah@__inser__IP___:/mnt/data2/different_species/ovaries/Dana_ovaries_SRR23593056_fastqc.html Desktop/
+```
+scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at sarah@INSERTIPADRESS:/mnt/data2/different_species/ovaries/Dana_ovaries_SRR23593056_fastqc.html Desktop/
+````
+
+copy files from my computer to Roco / Vetlinux:
+```
+scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at Desktop/Dana_ovaries_SRR23593056_fastqc.html vetlinux04@pgnsrv042.vu-wien.ac.at:/home/vetlinux04/Sarah/softwares
+```
 
 
 Riccardo:
