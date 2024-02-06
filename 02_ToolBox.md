@@ -2,7 +2,7 @@ run the ToolBox to remove redundant sequences
 run the ToolBox again to remove low-complexity reads
 output is in the ovaries_without_adapter folder
 
-````
+```
 #!/bin/bash
 
 # Assigning arguments to variables
