@@ -19,3 +19,8 @@ for fastq_file in "${FASTQ}"/*.fq; do
 done
 ```
 
+
+execute using:
+```
+nohup ./01_automate.TB.sh > 01.log 2>1 &
+```
