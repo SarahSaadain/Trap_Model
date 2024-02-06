@@ -40,7 +40,7 @@ chmod +x proTRAC_automate.sh
 
 run in the back:
 ```
-nohup ./proTRAC_automate.sh > Dyak_automate_proTRAC.log 2>&1 &
+nohup bash ./proTRAC_automate.sh > Dyak_automate_proTRAC.log 2>&1 &
 ```
 
 the one liner version for one file only
