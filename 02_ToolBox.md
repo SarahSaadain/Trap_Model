@@ -1,4 +1,4 @@
-run the ToolBox to remove redundant sequences
+run the ToolBox to remove redundant sequences  
 run the ToolBox again to remove low-complexity reads
 
 ````
