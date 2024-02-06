@@ -18,3 +18,12 @@ https://www.ncbi.nlm.nih.gov/bioproject/PRJNA675888/
 
 For the assemblies I used the 101 drosophilid genome dataset, except Dazt (where the assembly I used is GCA_005876895) and Dsuz (where there is two different assemblies vailable
 GCF_000472105	GCF_013340165)
+
+
+
+change names
+```for file in *.fastq.gz; do mv "$file" "Dana_ovaries_$file"; done```
+
+and then move them to folder for ovaries
+
+```mv D*.fastq.gz ../../ovaries/```
