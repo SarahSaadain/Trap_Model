@@ -74,17 +74,14 @@ for folder in /home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter/*/; do
 done
 ```
 
-
-
-
 add execution permission:
 ```
-chmod +x proTRAC_automate.sh
+chmod +x 03_automate_proTRAC.sh
 ```
 
-run in the back:
+run it
 ```
-nohup bash ./proTRAC_automate.sh > Dyak_automate_proTRAC.log 2>&1 &
+nohup ./03_automate_proTRAC.sh /home/vetlinux04/Sarah/softwares > 02.log 2>&1 &
 ```
 
 the one liner version for one file only
