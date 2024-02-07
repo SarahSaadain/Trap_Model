@@ -33,6 +33,50 @@ for folder in *_follicle/ *_ovary/; do
 done
 ```
 
+new version
+```
+#!/bin/bash
+
+# Full path to proTRAC_2.4.4.pl
+proTRAC_path="/home/vetlinux04/Sarah/softwares/proTRAC_2.4.4.pl"
+
+# Path to the genome directory
+genome_dir="/home/vetlinux04/Sarah/trapmodel/ref"
+
+# Iterate through ovaries_without_adapter
+for folder in /home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter/*/; do
+    # Check if the folder contains .map files
+    if [ -n "$(find "$folder" -maxdepth 1 -type f -name "*.map")" ]; then
+        # Iterate through .map files in the folder
+        for map_file in "$folder"*.map; do
+            echo "Processing files in folder: $folder"
+            echo "Input MAP: $map_file"
+
+            # Extract the species prefix from the map file
+            species_prefix=$(basename "$map_file" | cut -c 1-4)
+
+            # Find the corresponding genome file in the genome directory
+            matching_genome=$(find "$genome_dir" -maxdepth 1 -type f -name "${species_prefix}_*.fna" | head -n 1)
+
+            if [ -n "$matching_genome" ]; then
+                echo "Matching Genome FNA: $matching_genome"
+
+                # Add your proTRAC_2.4.4.pl command with absolute path to genome file
+                # Example:
+                perl "$proTRAC_path" -map "$map_file" -genome "$matching_genome"
+
+                echo "------------------------"  # Separator line
+            else
+                echo "No matching genome found for $map_file."
+            fi
+        done
+    fi
+done
+```
+
+
+
+
 add execution permission:
 ```
 chmod +x proTRAC_automate.sh
