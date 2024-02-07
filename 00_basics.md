@@ -39,5 +39,5 @@ SCRIPTS_FOLDER="$3"
 perl "${SCRIPTS_FOLDER}/TBr2/TBr2_collapse.pl" -i "${FASTQ}" -o "${FASTQ}-collapsed.fastq"
 perl "${SCRIPTS_FOLDER}/TBr2/TBr2_duster.pl" -I "${FASTQ}-collapsed.fastq"
 perl "${SCRIPTS_FOLDER}/sRNAmapper.pl" -input "${FASTQ}-collapsed.fastq.no-dust" -genome "${GENOME}" -alignments best
-perl "${SCRIPTS_FOLDER}/proTRAC_2.4.3.pl" -map "${FASTQ}-collapsed.fastq.no-dust.map" -genome "${GENOME}"
+perl "${SCRIPTS_FOLDER}/proTRAC_2.4.4.pl" -map "${FASTQ}-collapsed.fastq.no-dust.map" -genome "${GENOME}"
 ```
