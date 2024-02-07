@@ -81,7 +81,7 @@ chmod +x 03_automate_proTRAC.sh
 
 run it
 ```
-nohup ./03_automate_proTRAC.sh /home/vetlinux04/Sarah/softwares > 02.log 2>&1 &
+nohup ./03_automate_proTRAC.sh /home/vetlinux04/Sarah/softwares > 03.log 2>&1 &
 ```
 
 the one liner version for one file only
