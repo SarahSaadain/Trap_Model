@@ -1,85 +1,49 @@
 automate the sRNAmapper for all files
-Dspecies_automate.sh
+02_automate_sRNAmapper.sh  
+
 ```
 #!/bin/bash
 
-# Full path to sRNAmapper.pl
-sRNAmapper_path="/home/sarah/different_species/sRNAmapper.pl"
-
-# Find the genome file with a .fna extension in the current directory
-genome_path=$(find . -maxdepth 1 -type f -name "*.fna" | head -n 1)
-
-# Check if a .fna file was found
-if [ -z "$genome_path" ]; then
-    echo "No .fna file found in the current directory."
-    exit 1
+# Check for correct number of arguments
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <scripts_folder>"
+  exit 1
 fi
 
-# Iterate through folders ending with _follicle and _ovary
-for folder in *_follicle/ *_ovary/; do
-    # Check if the folder contains .fastq.gz files
-    if [ -n "$(find "$folder" -maxdepth 1 -type f -name "*.fastq.gz")" ]; then
-        # Iterate through .fastq.gz files in the folder
-        for fastq_file in "$folder"*.fastq.gz; do
-            echo "Processing files in folder: $folder"
-            echo "Input FASTQ: $fastq_file"
-            echo "Genome FNA: $genome_path"
+# Assigning arguments to variables
+SCRIPTS_FOLDER="/home/vetlinux04/Sarah/softwares"
+INPUT_DIR="/home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter"
+GENOME_DIR="/home/vetlinux04/Sarah/trapmodel/ref"
 
-            # Add your sRNAmapper.pl command with absolute path to genome file
-            # Example:
-            perl "$sRNAmapper_path" -input "$fastq_file" -genome "$genome_path" -alignment best
+# Iterate through the input directory
+for fastq_file in "${INPUT_DIR}"/*collapsed.fastq.no-dust; do
+    # Extract the species prefix from the fastq file name
+    species_prefix=$(basename "$fastq_file" | cut -c 1-4)
 
-            echo "------------------------"  # Separator line
-        done
-    fi
-done
-```
+    # Find the corresponding genome file in the genome directory with the same species prefix
+    matching_genome=$(find "${GENOME_DIR}" -maxdepth 1 -type f -name "${species_prefix}_*.fna" | head -n 1)
 
-
-new way for the new names/folder structure:  
-**sRNAmapper_automate.sh**
-```
-#!/bin/bash
-
-# Full path to sRNAmapper.pl
-sRNAmapper_path="/home/sarah/different_species/sRNAmapper.pl"
-
-# Iterate through the ovaries folder
-for fastq_file in ovaries/*.fastq; do
-    echo "Processing file: $fastq_file"
-    
-    # Extract the first 4 characters from the fastq file name
-    prefix=$(basename "$fastq_file" | cut -c 1-4)
-    
-    # Find the corresponding genome file with a matching prefix in the ref directory
-    matching_genome=$(find ref -maxdepth 1 -type f -name "${prefix}_*.fna" | head -n 1)
-    
     if [ -n "$matching_genome" ]; then
         echo "Matching Genome FNA: $matching_genome"
-
-        # Add your sRNAmapper.pl command with absolute path to genome file
-        # Example:
-        perl "$sRNAmapper_path" -input "$fastq_file" -genome "$matching_genome" -format sam  -alignments best
-
+        # Execute sRNAmapper.pl command
+        perl "${SCRIPTS_FOLDER}/sRNAmapper.pl" -input "${fastq_file}" -genome "${matching_genome}" -alignments best
         echo "------------------------"  # Separator line
     else
         echo "No matching genome found for $fastq_file."
     fi
 done
-
 ```
-
 
 
 to have executing permissions do:
 ```
-chmod +x automate.sh
+chmod +x 02_automate_sRNAmapper.sh
 ```
 
 
 run it
 ```
-nohup ./automate.sh > automate.log 2>&1 &
+nohup ./02_automate_sRNAmapper.sh /home/vetlinux04/Sarah/softwares > 02.log 2>&1 &
 ```
 
 
