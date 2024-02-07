@@ -19,8 +19,12 @@ for fastq_file in "${FASTQ}"/*.fq; do
 done
 ```
 
+change permissions to run it:
+```
+chmod +x 01_automate_TBr2.sh
+```
 
 execute using:
 ```
-nohup ./01_automate.TB.sh > 01.log 2>1 &
+nohup ./01_automate_TBr2.sh > 01.log 2>1 &
 ```
