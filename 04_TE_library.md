@@ -69,14 +69,23 @@ fi
 # Process all .fai files in the directory
 for fai_file in "$input_directory"/*.fai; do
     if [ -e "$fai_file" ]; then
+        # Get the base name of the input file (excluding the path)
+        base_name=$(basename "$fai_file")
+        
+        # Form the output file path in the same directory
+        output_file="$input_directory/${base_name%.fai}_filtered.txt"
+        
         echo "Processing $fai_file:"
-        awk '$2 > 1000' "$fai_file"
+        awk '$2 > 1000' "$fai_file" > "$output_file"
         echo "------------------------"
     else
         echo "No .fai files found in the directory."
         exit 1
     fi
 done
+
+echo "Output files saved in the same directory as the input."
+
 ````
 
 and again do chmod before
