@@ -3,7 +3,7 @@ https://github.com/susbo/Drosophila_TE_libraries/tree/main/FASTA
 
 use this script to index the files (done on my laptop)
 ```
-        #!/bin/bash
+#!/bin/bash
 
 # Check if samtools is installed
 if ! command -v samtools &> /dev/null; then
@@ -93,10 +93,10 @@ and again do chmod before
 chmod +x extract_lines.sh
 ```
 
-and do
+and do this to execute
 ```
-./
-
+./extract_lines.sh
+```
 
 
 then use:
