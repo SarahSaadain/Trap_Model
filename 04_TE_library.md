@@ -99,7 +99,7 @@ and do this to execute
 ```
 
 
-then use:
+then use Riccardos filter-fasta.py script:
 
 
 ```
@@ -132,4 +132,11 @@ def filter(fasta, selection, out):
 
 filter(args.fasta, args.selected, args.output)
 ```
+by using:
+
+```
+python /Users/ssaadain/Downloads/filter-fasta.py Dana.GCF_003285975.fa Dana.GCF_003285975.fa_filtered.txt Dana.GCF_003285975_filtered.fa
+````
+
+not working because it only takes the first line of the fasta, I need to defragment before
 
