@@ -99,9 +99,43 @@ and do this to execute
 ```
 
 
-then use Riccardos filter-fasta.py script:
+-----SARAH HIER WEITERMACHEN-----
+parsing not working because it only takes the first line of the fasta, I need to defragment before with:
 
+```
+ python /Users/ssaadain/Downloads/defragment-fasta.py Dana.GCF_003285975.fa Dana.GCF_003285975_defrag.fa
+```
 
+this is the actual defrag script:
+```
+import argparse
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Filter FASTA file.")
+parser.add_argument("fasta", help="Path to fasta file")
+parser.add_argument("output", help="Path to the output file")
+args = parser.parse_args()
+
+def filter(fasta, out):
+    with open(fasta, 'r') as fasta_file, open(out, 'w') as output_file:
+        for i, line in enumerate(fasta_file):
+            line = line.strip()
+            if line.startswith(">"):
+                if i>0:
+                    output_file.write("\n")
+                output_file.write(line + "\n")
+            else:
+                output_file.write(line)
+
+filter(args.fasta, args.output)
+```
+
+then fo the filter fasta again
+```
+python /Users/ssaadain/Downloads/filter-fasta.py Dana.GCF_003285975.fa Dana.GCF_003285975.fa_filtered.txt Dana.GCF_003285975_filtered.fa
+```
+
+this is the actual filer-faster.py
 ```
 import argparse
 
@@ -132,11 +166,13 @@ def filter(fasta, selection, out):
 
 filter(args.fasta, args.selected, args.output)
 ```
-by using:
+and then upload all references (the right ones) and the filterted TE libraries form the parsing to vetlinux27
 
+there run repeatmasker like this, where $i is the reference and repeatlibrary/teseqs.fasta are the parsed and filtered libraries from the previous step
 ```
-python /Users/ssaadain/Downloads/filter-fasta.py Dana.GCF_003285975.fa Dana.GCF_003285975.fa_filtered.txt Dana.GCF_003285975_filtered.fa
-````
+RepeatMasker -pa 20 -no_is -s -nolow -dir out -lib repeatlibrary/teseqs.fasta $i
+```
 
-not working because it only takes the first line of the fasta, I need to defragment before
+
+
 
