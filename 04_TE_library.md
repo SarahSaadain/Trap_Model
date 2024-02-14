@@ -43,6 +43,53 @@ echo "Indexing of .fa.gz files in $input_directory is complete."
 
 ```
 
+make sure to use this before:
+```chmod +x index.sh```
+
+then execute the script by
+```
+./index.sh
+```
+
+
+then use this to filter for the size:
+
+```
+#!/bin/bash
+
+# Directory containing .fai files
+input_directory="/Users/ssaadain/Desktop/Lopik"
+
+# Check if the directory exists
+if [ ! -d "$input_directory" ]; then
+    echo "Directory not found: $input_directory"
+    exit 1
+fi
+
+# Process all .fai files in the directory
+for fai_file in "$input_directory"/*.fai; do
+    if [ -e "$fai_file" ]; then
+        echo "Processing $fai_file:"
+        awk '$2 > 1000' "$fai_file"
+        echo "------------------------"
+    else
+        echo "No .fai files found in the directory."
+        exit 1
+    fi
+done
+````
+
+and again do chmod before
+```
+chmod +x extract_lines.sh
+```
+
+and do
+```
+./
+
+
+
 then use:
 
 
