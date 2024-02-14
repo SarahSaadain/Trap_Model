@@ -1,6 +1,51 @@
 download the TE libraries for the relevant species from here:
 https://github.com/susbo/Drosophila_TE_libraries/tree/main/FASTA
 
+use this script to index the files (done on my laptop)
+```
+        #!/bin/bash
+
+# Check if samtools is installed
+if ! command -v samtools &> /dev/null; then
+    echo "samtools not found. Please install samtools."
+    exit 1
+fi
+
+# Specify the directory containing the .fa.gz files
+input_directory="/Users/ssaadain/Desktop/Lopik"
+
+# Check if the directory exists
+if [ ! -d "$input_directory" ]; then
+    echo "Directory not found: $input_directory"
+    exit 1
+fi
+
+# Unzip and index all .fa.gz files in the specified directory
+for gz_file in "$input_directory"/*.fa.gz; do
+    if [ -e "$gz_file" ]; then
+        # Unzip the file
+        gunzip -c "$gz_file" > "${gz_file%.gz}"
+
+        # Index the uncompressed file
+        samtools faidx "${gz_file%.gz}"
+
+        # Remove the uncompressed file if you don't need it
+        # rm "${gz_file%.gz}"
+
+        echo "Indexing completed for $gz_file."
+    else
+        echo "No .fa.gz files found in the directory."
+        exit 1
+    fi
+done
+
+echo "Indexing of .fa.gz files in $input_directory is complete."
+
+```
+
+then use:
+
+
 ```
 import argparse
 
