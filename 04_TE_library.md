@@ -108,7 +108,7 @@ parsing not working because it only takes the first line of the fasta, I need to
 
 how to loop it over all:
 ```
-find /Users/ssaadain/Desktop/Lopik -name 'D*' -type f -exec sh -c 'output="/Users/ssaadain/Desktop/Lopik/${0##*/}_defrag"; python /Users/ssaadain/Downloads/defragment-fasta.py "$0" "$output"' {} \;
+find /Users/ssaadain/Desktop/Lopik -name 'D*' -type f -exec sh -c 'output="/Users/ssaadain/Desktop/Lopik/${0##*/}_defrag.fa"; python /Users/ssaadain/Downloads/defragment-fasta.py "$0" "$output"' {} \;
 ```
 
 this is the actual defrag script:
