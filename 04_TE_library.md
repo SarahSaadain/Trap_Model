@@ -106,6 +106,11 @@ parsing not working because it only takes the first line of the fasta, I need to
  python /Users/ssaadain/Downloads/defragment-fasta.py Dana.GCF_003285975.fa Dana.GCF_003285975_defrag.fa
 ```
 
+how to loop it over all:
+```
+find /Users/ssaadain/Desktop/Lopik -name 'D*' -type f -exec sh -c 'output="/Users/ssaadain/Desktop/Lopik/${0##*/}_defrag"; python /Users/ssaadain/Downloads/defragment-fasta.py "$0" "$output"' {} \;
+```
+
 this is the actual defrag script:
 ```
 import argparse
