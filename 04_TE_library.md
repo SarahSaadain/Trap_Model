@@ -142,7 +142,7 @@ then do the parsing fasta
 ```
 python /Users/ssaadain/Downloads/filter-fasta.py Dana.GCF_003285975_defrag.fa Dana.GCF_003285975.fa_filtered.txt Dana.GCF_003285975_parsed.fa
 ```
-loop it over all files
+loop it over all files with look_parsing.sh
 ```
 for defrag_file in *_defrag.fa; do
     species_code="${defrag_file:0:4}"
