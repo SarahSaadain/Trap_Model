@@ -98,7 +98,10 @@ and do this to execute
 ./extract_lines.sh
 ```
 
-
+keep only the first column
+```
+for file in *.fa_filtered.txt; do awk '{print $1}' "$file" > "${file%.fa_filtered.txt}_temp.txt" && mv "${file%.fa_filtered.txt}_temp.txt" "$file"; done
+```
 -----SARAH HIER WEITERMACHEN-----
 parsing not working because it only takes the first line of the fasta, I need to defragment before with:
 
