@@ -107,6 +107,7 @@ parsing not working because it only takes the first line of the fasta, I need to
 ```
 
 how to loop it over all:
+(careful this prodecs the _defrag for all files, not just the.fa, I need to change that or remove the extra ones later)
 ```
 find /Users/ssaadain/Desktop/Lopik -name 'D*' -type f -exec sh -c 'output="/Users/ssaadain/Desktop/Lopik/${0##*/}_defrag.fa"; python /Users/ssaadain/Downloads/defragment-fasta.py "$0" "$output"' {} \;
 ```
