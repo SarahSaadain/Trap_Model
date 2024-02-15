@@ -102,8 +102,8 @@ keep only the first column
 ```
 for file in *.fa_filtered.txt; do awk '{print $1}' "$file" > "${file%.fa_filtered.txt}_temp.txt" && mv "${file%.fa_filtered.txt}_temp.txt" "$file"; done
 ```
------SARAH HIER WEITERMACHEN-----
-parsing not working because it only takes the first line of the fasta, I need to defragment before with:
+---------
+I need to defragment before parsing with:
 
 ```
  python /Users/ssaadain/Downloads/defragment-fasta.py Dana.GCF_003285975.fa Dana.GCF_003285975_defrag.fa
@@ -138,12 +138,23 @@ def filter(fasta, out):
 filter(args.fasta, args.output)
 ```
 
-then fo the filter fasta again
+then do the parsing fasta
 ```
-python /Users/ssaadain/Downloads/filter-fasta.py Dana.GCF_003285975.fa Dana.GCF_003285975.fa_filtered.txt Dana.GCF_003285975_filtered.fa
+python /Users/ssaadain/Downloads/filter-fasta.py Dana.GCF_003285975_defrag.fa Dana.GCF_003285975.fa_filtered.txt Dana.GCF_003285975_parsed.fa
+```
+loop it over all files
+```
+for defrag_file in *_defrag.fa; do
+    species_code="${defrag_file:0:4}"
+    filtered_file="${species_code}_filtered.txt"
+    parsed_file="${species_code}_parsed.fa"
+    python filter-fasta.py "$defrag_file" "$filtered_file" "$parsed_file"
+done
 ```
 
-this is the actual filer-faster.py
+
+
+this is the actual (parsing) filer-faster.py
 ```
 import argparse
 
