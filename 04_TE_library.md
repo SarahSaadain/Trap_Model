@@ -142,16 +142,32 @@ then do the parsing fasta
 ```
 python /Users/ssaadain/Downloads/filter-fasta.py Dana.GCF_003285975_defrag.fa Dana.GCF_003285975.fa_filtered.txt Dana.GCF_003285975_parsed.fa
 ```
-loop it over all files with look_parsing.sh
+loop it over all files
 ```
+#!/bin/bash
+
+# Loop through each defrag file in the directory
 for defrag_file in *_defrag.fa; do
-    species_code="${defrag_file:0:4}"
-    filtered_file="${species_code}_filtered.txt"
-    parsed_file="${species_code}_parsed.fa"
-    python filter-fasta.py "$defrag_file" "$filtered_file" "$parsed_file"
+    # Extract species code from defrag file
+    species_code=$(echo "$defrag_file" | sed 's/_defrag.fa$//')
+
+    # Form corresponding filtered and parsed filenames
+    filtered_file="${species_code}.fa_filtered.txt"
+    parsed_file="${species_code}_parsed.${defrag_file#*.}"
+
+    # Run the script if the filtered file exists
+    if [ -e "$filtered_file" ]; then
+        python filter-fasta.py "$defrag_file" "$filtered_file" "$parsed_file"
+    else
+        echo "Filtered file not found for $defrag_file"
+    fi
 done
 ```
 
+make the names better:
+```
+find . -type f -name '*_parsed*' -exec bash -c 'for file; do newname=$(echo "$file" | awk -F"_parsed." "{print \$1\"_parsed\"substr(\$2, index(\$2,\".\"))}"); mv "$file" "$newname"; done' _ {} +
+```
 
 
 this is the actual (parsing) filer-faster.py
