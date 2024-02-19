@@ -59,8 +59,7 @@ sudo rename 's/SRRSRR/SRR/' /mnt/data2/sarah/proTRAC-0.05pdns/results/*_results.
 ```
 
 extract all infos from the ProTRAC outputs in one table:
-```
-  GNU nano 6.2                                                    test_all_columns.sh                                                              
+```                                                          
 #!/bin/bash
 
 # Specify the path to the results directory
