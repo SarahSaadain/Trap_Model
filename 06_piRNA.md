@@ -28,4 +28,27 @@ for folder in "$main_directory"/*; do
     fi
 done
 ```
+then move all files to a new folder called results
+```
+#!/bin/bash
 
+# Specify the path to the main directory containing the subdirectories
+main_directory="/mnt/data2/sarah/proTRAC-0.05pdns"
+
+# Create a directory named 'results' if it doesn't exist
+results_directory="$main_directory/results"
+mkdir -p "$results_directory"
+
+# Loop through each subdirectory
+for folder in "$main_directory"/*; do
+    if [ -d "$folder" ]; then
+        # Check if _results.table exists in the folder
+        results_table="$folder/*_results.table"
+        if [ -f $results_table ]; then
+            # Move _results.table to the 'results' directory
+            mv $results_table "$results_directory/"
+            echo "Moved $results_table to $results_directory/"
+        fi
+    fi
+done
+```
