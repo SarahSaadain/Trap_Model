@@ -99,5 +99,5 @@ done
 
 extract the results to my computer:
 ```
-scp -o ProxyJump=mario@pgnport.vu-wien.ac.at sarah@10.120.3.47:/mnt/data2/sarah/proTRAC-0.05pdns/results/summary_output.txt Desktop/
+scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at sarah@10.120.3.47:/mnt/data2/sarah/proTRAC-0.05pdns/results/summary_output.txt Desktop/
 ```
