@@ -70,6 +70,16 @@ output_file="$results_directory/summary_output.txt"
 echo -e "SRRnumber\tCluster_bp\tCluster_percent\tNonIdentical_bp\tNonIdentical_percent\tReads_bp\tReads_percent" > "$output_file"
 
 # Loop through each file in the results directory
+#!/bin/bash
+
+# Specify the path to the results directory
+results_directory="/mnt/data2/sarah/proTRAC-0.05pdns/results"
+
+# Create an output file
+output_file="$results_directory/summary_output.txt"
+echo -e "SRRnumber\tCluster_bp\tCluster_%\tNonIdent_bp\tNonIdent_%\tReads_bp\tReads_%" > "$output_file"
+
+# Loop through each file in the results directory
 for file in "$results_directory"/*_results.table; do
     # Extract species and SRRnumber from the file name
     species_srr=$(echo "$file" | awk -F'/' '{print $NF}' | awk -F'_' '{print $1"_"$2}')
