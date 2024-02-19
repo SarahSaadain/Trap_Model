@@ -1,0 +1,31 @@
+Extract the proTRAC outputs:
+proTRAC created a folder for each sample and inside there is a file called results.table
+Use this script to get the right identifiers to the results.table in ech folder:
+
+```
+#!/bin/bash
+
+# Specify the path to the main directory containing the subdirectories
+main_directory="/mnt/data2/sarah/proTRAC-0.05pdns"
+
+# Loop through each subdirectory
+for folder in "$main_directory"/*; do
+    if [ -d "$folder" ]; then
+        # Extract identifier and SSR number from the folder name
+        identifier=$(echo "$folder" | awk -F'_' '{print substr($2, 1, 4)}')
+        ssr_number=$(echo "$folder" | awk -F'_' '{for (i=1; i<=NF; i++) {if ($i ~ /^SRR/) {print $i; break}}}')
+
+        # Check if results.table exists in the folder
+        results_table="$folder/results.table"
+        if [ -f "$results_table" ]; then
+            # Rename results.table to include the identifier and SSR number
+            new_name="$folder/${identifier}_SRR${ssr_number}_results.table"
+            mv "$results_table" "$new_name"
+            echo "Renamed $results_table to $new_name"
+        else
+            echo "results.table not found in $folder"
+        fi
+    fi
+done
+```
+
