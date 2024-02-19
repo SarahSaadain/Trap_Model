@@ -96,3 +96,8 @@ for file in "$results_directory"/*_results.table; do
     echo -e "$species_srr\t$cluster_bp\t$cluster_percent\t$non_identical_bp\t$non_identical_percent\t$reads_bp\t$reads_percent" >> "$output_file"
 done
 ```
+
+extract the results to my computer:
+```
+scp -o ProxyJump=mario@pgnport.vu-wien.ac.at sarah@10.120.3.47:/mnt/data2/sarah/proTRAC-0.05pdns/results/summary_output.txt Desktop/
+```
