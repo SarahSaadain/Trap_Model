@@ -66,10 +66,10 @@ extract all infos from the ProTRAC outputs in one table:
 #!/bin/bash
 
 # Specify the path to the results directory
-results_directory="/mnt/data2/sarah/proTRAC-0.05pdns/results"
+results_directory="/mnt/data2/sarah/proTRAC-0.2pdns/results"
 
 # Create an output file
-output_file="$results_directory/predicted_clusters.txt"
+output_file="$results_directory/predicted_clusters_pdens0.2.txt"
 echo -e "SRRnumber\tpredicted_clusters\tCluster_bp\tCluster_%\tNonIdent_bp\tNonIdent_%\tReads_bp\tReads_%" > "$output_file"
 
 # Loop through each file in the results directory
