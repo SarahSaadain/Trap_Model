@@ -14,6 +14,11 @@ copy stuff without jumphost from my computer to roco
 scp /Users/ssaadain/Downloads/reader-rm.py sarah@10.120.3.47:/home/sarah
 ```
 
+copy stuff from roco to my computer
+```
+scp -r sarah@10.120.3.47:/home/sarah/RM /Users/ssaadain/Downloads
+```
+
 
 Trimgalore
 ```
