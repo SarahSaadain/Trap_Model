@@ -1,6 +1,6 @@
 Extract the proTRAC outputs:
 proTRAC created a folder for each sample and inside there is a file called results.table.  
-Use this script to get the right identifiers to the results.table in ech folder:  
+Use this script to get the right identifiers to the results.table in each folder:  
 **extract.sh**
 ```
 #!/bin/bash
