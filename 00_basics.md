@@ -9,6 +9,12 @@ copy files from my computer to Roco / Vetlinux:
 scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at Desktop/Dana_ovaries_SRR23593056_fastqc.html vetlinux04@pgnsrv042.vu-wien.ac.at:/home/vetlinux04/Sarah/softwares
 ```
 
+copy stuff without jumphost from my computer to roco
+```
+scp /Users/ssaadain/Downloads/reader-rm.py sarah@10.120.3.47:/home/sarah
+```
+
+
 Trimgalore
 ```
 trim_galore --small_rna --stringency 6 -e 0.1 --output_dir /mnt/data2/different_species/ovaries/trimgalore_other_settings/ /mnt/data2/different_species/ovaries/Dana_ovaries_SRR23593056.fastq
