@@ -29,7 +29,7 @@ for folder in "$main_directory"/*; do
 done
 ```
 then move all files to a new folder called results  
-(careful I moved them, I didn't copy them)
+(careful I moved them, I didn't copy them)  
 **results.sh**
 ```
 #!/bin/bash
