@@ -60,7 +60,8 @@ change the name as there are to many SRR in the name:
 sudo rename 's/SRRSRR/SRR/' /mnt/data2/sarah/proTRAC-0.05pdns/results/*_results.table
 ```
 
-extract all infos from the ProTRAC outputs in one table:
+extract all infos from the ProTRAC outputs in one table:  
+**combine_results.sh**
 ```                                                          
 #!/bin/bash
 
