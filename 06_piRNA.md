@@ -61,7 +61,7 @@ sudo rename 's/SRRSRR/SRR/' /mnt/data2/sarah/proTRAC-0.05pdns/results/*_results.
 ```
 
 extract all infos from the ProTRAC outputs in one table:  
-**combine_results.sh**
+**predicted_clusters.sh**
 ```                                                          
 #!/bin/bash
 
@@ -69,31 +69,21 @@ extract all infos from the ProTRAC outputs in one table:
 results_directory="/mnt/data2/sarah/proTRAC-0.05pdns/results"
 
 # Create an output file
-output_file="$results_directory/summary_output.txt"
-echo -e "SRRnumber\tCluster_bp\tCluster_percent\tNonIdentical_bp\tNonIdentical_percent\tReads_bp\tReads_percent" > "$output_file"
-
-# Loop through each file in the results directory
-#!/bin/bash
-
-# Specify the path to the results directory
-results_directory="/mnt/data2/sarah/proTRAC-0.05pdns/results"
-
-# Create an output file
-output_file="$results_directory/summary_output.txt"
-echo -e "SRRnumber\tCluster_bp\tCluster_%\tNonIdent_bp\tNonIdent_%\tReads_bp\tReads_%" > "$output_file"
+output_file="$results_directory/predicted_clusters.txt"
+echo -e "SRRnumber\tpredicted_clusters\tCluster_bp\tCluster_%\tNonIdent_bp\tNonIdent_%\tReads_bp\tReads_%" > "$output_file"
 
 # Loop through each file in the results directory
 for file in "$results_directory"/*_results.table; do
     # Extract species and SRRnumber from the file name
     species_srr=$(echo "$file" | awk -F'/' '{print $NF}' | awk -F'_' '{print $1"_"$2}')
 
-    # Extract values from the file
-    # ... (your existing code)
-
     # Extract values from the third last sentence
     cluster_bp_percent_line=$(tail -n 3 "$file" | head -n 1)  # Get the third last line
     cluster_bp=$(echo "$cluster_bp_percent_line" | awk -F': ' '{print $2}' | awk '{print $1}')  # Extract digits between ": " and "bp"
     cluster_percent=$(echo "$cluster_bp_percent_line" | awk -F'[()]' '{print $2}')  # Extract numbers between "(" and ")"
+    
+    # Extract values from the third last sentence for predicted_clusters
+    predicted_clusters=$(echo "$cluster_bp_percent_line" | awk -F'of ' '{print $2}' | awk '{print $1}')  # Extract digits between "of" and "predicted"
 
     # Extract values from the second last sentence
     non_identical_bp_percent_line=$(tail -n 2 "$file" | head -n 1)  # Get the second last line
@@ -106,7 +96,7 @@ for file in "$results_directory"/*_results.table; do
     reads_percent=$(echo "$reads_bp_percent_line" | awk -F'[()]' '{print $2}')  # Extract numbers between "(" and ")"
 
     # Print values to the output file
-    echo -e "$species_srr\t$cluster_bp\t$cluster_percent\t$non_identical_bp\t$non_identical_percent\t$reads_bp\t$reads_percent" >> "$output_file"
+    echo -e "$species_srr\t$predicted_clusters\t$cluster_bp\t$cluster_percent\t$non_identical_bp\t$non_identical_percent\t$reads_bp\t$reads_percent" >> "$output_file"
 done
 ```
 
