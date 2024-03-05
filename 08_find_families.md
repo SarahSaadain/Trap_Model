@@ -14,3 +14,7 @@ use this one liner to extract the infor and add it in a new column:
 grep '^>' Dyak.fa | awk -F'[>#/]' '{print $2"\t"$3"\t"$4}' > Dyak_TE.txt
 ```
 
+merge the _TE.txt files:
+```
+cat *.txt > merged_TEs.txt
+```
