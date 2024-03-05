@@ -170,7 +170,7 @@ find . -type f -name '*_parsed*' -exec bash -c 'for file; do newname=$(echo "$fi
 ```
 
 
-this is the actual (parsing) filer-faster.py
+this is the actual (parsing) filter-fasta.py
 ```
 import argparse
 
