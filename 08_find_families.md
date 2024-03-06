@@ -11,7 +11,7 @@ ACCGTTGGAGAACGGTTGCGCTTCGCACCACACCTTGCCAATCTGAAGGACCGATTGGTCGGTACGGTTGGACGATTGCG
 
 use this one liner to extract the infor and add it in a new column:
 ```
-grep '^>' Dana.fa | awk -F'[>#/]' '{print $2"\t"$3"\t"$4"\tDana"}' > Dana_TE.txt
+grep '^>' Dana.fa | awk -F'[>#/]' '{print "Dana_"$2"\t"$3"\t"$4}' > Dana_TE.txt
 ```
 
 merge the _TE.txt files:
