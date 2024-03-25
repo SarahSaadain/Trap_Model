@@ -25,3 +25,8 @@ change names
 and then move them to folder for ovaries
 
 ```mv D*.fastq.gz ../../ovaries/```
+
+run trimgalore to remove adapters
+```
+find /mnt/data2/different_species/ovaries/ -type f -name "*.fastq" -exec trim_galore --small_rna --stringency 6 -e 0.1 --output_dir /mnt/data2/different_species/ovaries/trimmed/ {} \;
+```
