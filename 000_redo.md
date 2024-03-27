@@ -28,7 +28,4 @@ for file in *_trim2.fastq; do
     # Run Trim Galore with specified settings and output name
     trim_galore --clip_R1 2 --three_prime_clip_R1 2 --output_dir clipped_output --basename "$output_name" "$file"
 done
-
-
-
 ```
