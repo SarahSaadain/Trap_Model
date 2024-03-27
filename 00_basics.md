@@ -22,9 +22,6 @@ scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at Desktop/Dana_ovaries_SRR23593056_fas
 
 
 Trimgalore
-```
-trim_galore --small_rna --stringency 6 -e 0.1 --output_dir /mnt/data2/different_species/ovaries/trimgalore_other_settings/ /mnt/data2/different_species/ovaries/Dana_ovaries_SRR23593056.fastq
-```
 
 Trimgalore multiple species
 ```
