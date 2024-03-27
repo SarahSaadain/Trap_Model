@@ -7,14 +7,13 @@ done
 
 and then do the following code on the files in the trimmed_output folder
 ```
-for file in *_trimmed.fastq; do
+for file in *_trimmed.fq; do
     # Define output filename with the _trim2 suffix
     output_name="${file%_trimmed.fastq}_trim2.fastq"
 
     # Run Trim Galore with specified settings and output name
     trim_galore --stringency 5 -e 0.1 --length 18 --max_length 35 -q 0 --output_dir trimmed_output2 --basename "$output_name" "$file"
 done
-
 ```
 
 and then
