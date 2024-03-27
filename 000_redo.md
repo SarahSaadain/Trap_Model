@@ -1,5 +1,5 @@
 from the downloaded files (in mnt/data2/sarah/different_species/ovaries/march2024) I usw three steps in trim galore, following this: https://www.nature.com/articles/s41467-023-42787-1#data-availability by first doing:
-_trim1.sh_
+*trim1.sh*
 ```
 for file in *.fastq; do
     trim_galore --stringency 30 -e 0.1 -a TGCTTGGACTACATATGGTTGAGGGTTGTA --length 18 -q 0 --output_dir trimmed_output --basename "$output_name" "$file"
@@ -19,6 +19,7 @@ done
 ```
 
 and then
+*trim3.sh*
 ```
 for file in *_trim2.fastq; do
     # Define output filename with the _clip suffix
