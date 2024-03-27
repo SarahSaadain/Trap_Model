@@ -1,15 +1,4 @@
-copy files from Roco to my computer:
-
-```
-scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at sarah@INSERTIPADRESS:/mnt/data2/different_species/ovaries/Dana_ovaries_SRR23593056_fastqc.html Desktop/
-````
-
-copy files from my computer to Roco / Vetlinux:
-```
-scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at Desktop/Dana_ovaries_SRR23593056_fastqc.html vetlinux04@pgnsrv042.vu-wien.ac.at:/home/vetlinux04/Sarah/softwares
-```
-
-copy stuff without jumphost from my computer to roco
+copy stuff from my computer to roco
 ```
 scp /Users/ssaadain/Downloads/reader-rm.py sarah@10.120.3.47:/home/sarah
 ```
@@ -18,6 +7,18 @@ copy stuff from roco to my computer
 ```
 scp -r sarah@10.120.3.47:/home/sarah/RM /Users/ssaadain/Downloads
 ```
+
+copy files from Roco to my computer via jumphost:
+
+```
+scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at sarah@INSERTIPADRESS:/mnt/data2/different_species/ovaries/Dana_ovaries_SRR23593056_fastqc.html Desktop/
+````
+
+copy files from my computer to Roco / Vetlinux via jumphost:
+```
+scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at Desktop/Dana_ovaries_SRR23593056_fastqc.html vetlinux04@pgnsrv042.vu-wien.ac.at:/home/vetlinux04/Sarah/softwares
+```
+
 
 
 Trimgalore
