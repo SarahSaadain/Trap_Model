@@ -1,4 +1,4 @@
-run the ToolBox to remove redundant sequences  (TB doesn't work on Roco so I did it on vetlinux4)
+run the ToolBox to remove redundant sequences  (TB doesn't work on Roco so I did it on vetlinux4)  
 run the ToolBox again to remove low-complexity reads
 output is in the ovaries_without_adapter folder
 
