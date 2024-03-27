@@ -21,9 +21,9 @@ done
 and then
 *trim3.sh*
 ```
-for file in *_trim2.fastq; do
+for file in *_trimmed.fq; do
     # Define output filename with the _clip suffix
-    output_name="${file%_trim2.fastq}_trim3.fastq"
+    output_name="${file%_trimmed.fq}_clip.fastq"
 
     # Run Trim Galore with specified settings and output name
     trim_galore --clip_R1 2 --three_prime_clip_R1 2 --output_dir clipped_output --basename "$output_name" "$file"
