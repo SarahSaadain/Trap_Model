@@ -29,7 +29,7 @@ for folder in "$main_directory"/*; do
 done
 ```
 
-another version of **extract.sh**:
+another version of **extract.sh** but with grep:
 ```
 #!/bin/bash
 
