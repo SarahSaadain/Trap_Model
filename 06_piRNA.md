@@ -71,7 +71,7 @@ output_file="$results_directory/predicted_clusters_pdens0.2.txt"
 echo -e "SRRnumber\tpredicted_clusters\tCluster_bp\tCluster_%\tNonIdent_bp\tNonIdent_%\tReads_bp\tReads_%" > "$output_file"
 
 # Loop through each file in the results directory
-for file in "$results_directory"/*_results.table; do
+for file in "$results_directory"/*.table; do
     # Extract species and SRRnumber from the file name
     species_srr=$(echo "$file" | awk -F'/' '{print $NF}' | awk -F'_' '{print $1"_"$2}')
 
