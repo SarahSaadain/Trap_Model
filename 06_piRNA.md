@@ -28,6 +28,38 @@ for folder in "$main_directory"/*; do
     fi
 done
 ```
+
+another version of **extract.sh**:
+```
+#!/bin/bash
+
+# Specify the path to the main directory containing the subdirectories
+main_directory="/home/vetlinux04/Sarah/softwares/proTrac_output"
+
+# Loop through each subdirectory
+for folder in "$main_directory"/*; do
+    if [ -d "$folder" ]; then
+        echo "Processing directory: $folder"
+
+        # Extract the required parts from the directory name
+        prefix=$(echo "$folder" | grep -oP 'proTRAC_\K\w{4}')
+        suffix=$(echo "$folder" | grep -oP 'ovaries_\KSRR\d+' | cut -d'_' -f1)
+
+        # Find and rename .table files
+        for file in "$folder"/*.table; do
+            if [ -f "$file" ]; then
+                # Construct new filename
+                new_filename="${prefix}_${suffix}.table"
+
+                # Rename the file
+                mv "$file" "$folder/$new_filename"
+                echo "Renamed $file to $new_filename"
+            fi
+        done
+    fi
+done
+```
+
 then move all files to a new folder called results  
 (careful I moved them, I didn't copy them)  
 **results.sh**
