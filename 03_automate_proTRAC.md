@@ -43,3 +43,9 @@ the one liner version for one file only
 ```
 sudo perl proTRAC_2.4.3.pl -map ../../curana/Dana_ovaries_SRR23593057.sam -format SAM -genome ref/Dana_ref_GCA_018148915.1_ASM1814891v1_genomic.fna
 ```
+
+better /newer oneliner for testinf the right pdens for Dmel (we want around 3% piRNA clusters, so we try different pdens)
+
+```
+perl proTRAC_2.4.4.pl -map ../trapmodel/ovaries_without_adapter/clipped_output/Dmel_ovaries_SRR23593026_trimmed_final.fq-collapsed.fastq.no-dust.map -genome ../trapmodel/ref/Dmel_ref_GCA_018904365.1_ASM1890436v1_genomic.fna -pdens 0.2 -clsize 1000 -clstrand 0
+```
