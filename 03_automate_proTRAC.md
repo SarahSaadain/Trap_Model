@@ -24,7 +24,7 @@ for map_file in /home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter/clipped
 
             # Add your proTRAC_2.4.4.pl command with absolute path to genome file
             # Example:
-            perl "$proTRAC_path" -map "$map_file" -genome "$matching_genome" -pdens 0.2 -clsize 1000 -clstrand 0
+            perl "$proTRAC_path" -map "$map_file" -genome "$matching_genome" -pdens 0.2 -clsize 1000 -clstrand 0.5 -nomotif
 
             echo "------------------------"  # Separator line
         else
