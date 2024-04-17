@@ -31,9 +31,14 @@ gzip -d /home/vetlinux04/Sarah/trapmodel/somatic_follicle_with_adapter/*.gz
 
 Trimgalore
 
-Trimgalore multiple species
+Trimgalore multiple species (I used for the ovary run in february that worked)
 ```
 find /mnt/data2/different_species/ovaries/ -type f -name "*.fastq" -exec trim_galore --small_rna --stringency 6 -e 0.1 --output_dir /mnt/data2/different_species/ovaries/trimmed/ {} \;
+```
+
+same for the somatic_follicle cells
+```
+find /home/vetlinux04/Sarah/trapmodel/somatic_follicle_with_adapter/ -type f -name "*.fastq" -exec ./trim_galore --small_rna --stringency 6 -e 0.1 --output_dir /home/vetlinux04/Sarah/trapmodel/somatic_follicle_with_adapter/ {} \;
 ```
 
 
