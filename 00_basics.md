@@ -1,3 +1,8 @@
+copy stuff from roco to vetlinux04
+```
+scp -r sarah@10.120.3.47:/mnt/data2/sarah/different_species/somatic_follicle_with_adapter vetlinux04@pgnsrv042.vu-wien.ac.at:/home/vetlinux04/Sarah/trapmodel
+```
+
 copy stuff from my computer to roco
 ```
 scp /Users/ssaadain/Downloads/reader-rm.py sarah@10.120.3.47:/home/sarah
