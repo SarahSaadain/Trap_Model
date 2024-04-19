@@ -32,7 +32,7 @@ for folder in "$main_directory"/*; do
 done
 ```
 
-for the FC I used this extraction.sh script and it worked nicely:
+for the FC, I used this extraction.sh script and it worked nicely:
 ```
 #!/bin/bash
 
@@ -95,6 +95,32 @@ for folder in "$main_directory"/*; do
             cp $results_table "$results_directory/"
             echo "Moved $results_table to $results_directory/"
         fi
+    fi
+done
+```
+
+here the same I used for the FC
+```
+#!/bin/bash
+
+# Specify the path to the main directory containing the subdirectories
+main_directory="/home/vetlinux04/Sarah/softwares/proTRAC_output_FC_copy"
+
+# Create a directory named 'results' if it doesn't exist
+results_directory="$main_directory/results"
+mkdir -p "$results_directory"
+
+# Loop through each subdirectory
+for folder in "$main_directory"/*; do
+    if [ -d "$folder" ]; then
+        # Loop through files in the subdirectory
+        for file in "$folder"/*; do
+            if [ -f "$file" ] && [[ "$file" == *.table ]]; then
+                # Copy .table to the 'results' directory
+                cp "$file" "$results_directory/"
+                echo "Copied $file to $results_directory/"
+            fi
+        done
     fi
 done
 ```
