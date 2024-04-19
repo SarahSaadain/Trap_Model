@@ -32,6 +32,47 @@ for folder in "$main_directory"/*; do
 done
 ```
 
+for the FC I used this extraction.sh script and it worked nicely:
+```
+#!/bin/bash
+
+# Loop through each directory
+for folder in */; do
+    echo "Processing directory: $folder"
+
+    # Extract name from directory name
+    name=$(echo "$folder" | grep -oP 'proTRAC_\K[^_]+(?=_FC\d+)')
+
+    # Check if name is empty
+    if [ -z "$name" ]; then
+        echo "Error: Failed to extract name from directory name: $folder"
+        continue
+    fi
+
+    echo "Name: $name"
+
+    # Check if results.table exists in the directory
+    if [ -f "$folder/results.table" ]; then
+        echo "results.table found in $folder"
+        # Construct new filename
+        new_filename="${name}_$(echo "$folder" | grep -oP 'SRR\d+')"
+        new_filename="${new_filename}.table"
+        
+        # Check if the new filename already exists
+        if [ -f "$folder/$new_filename" ]; then
+            echo "Error: $new_filename already exists in $folder. Cannot rename."
+        else
+            # Rename the file
+            mv "$folder/results.table" "$folder/$new_filename"
+            echo "Renamed results.table to $new_filename"
+        fi
+    else
+        echo "results.table not found in $folder"
+    fi
+done
+```
+
+
 then copy all files to a new folder called results  
 **results.sh**
 ```
