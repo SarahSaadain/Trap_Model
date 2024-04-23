@@ -4,14 +4,14 @@ go build main.go
 ```
 I renamed executable into invadego_build
 
-invadeGo script:
+Testrun to check differences between using --cluster kb:76.5 and 76500 (bases)
 ```
 folder="/Users/ssaadain/invasions/"
 tool="/Users/ssaadain/invadego/invadego_build"
 
 $tool --seed 1713797481534670000 --N 1000 --gen 100 --genome mb:1 --cluster 76500 --rr 4 --rep 100 --u 0.1 --basepop 100 --steps 25 > $folder/Dvir_bases.txt
 ```
-
+invadeGo script:
 ```
 folder="/Users/ssaadain/invasions/"
 tool="/Users/ssaadain/invadego/invadego_build"
