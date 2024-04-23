@@ -33,3 +33,14 @@ $tool --N 1000 --gen 100 --genome mb:1 --cluster 10200 --rr 4 --rep 100 --u 0.1 
 ```
 make it excutable:
 chmod +x all_species.sh
+
+remove the first lines
+```
+#!/bin/bash
+
+for file in *.txt; do
+    new_file="${file%.txt}_cut.txt"
+    grep -vE "^#|^Invade" "$file" > "$new_file"
+    echo "Processed $file"
+done
+```
