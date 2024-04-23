@@ -1,8 +1,8 @@
-install invadeGO and go, then:
+install invadeGO and Go, then compile invadeGO into an executable with:
 ```
 go build main.go
 ```
-so executable file appears
+I renamed executable into invadego_build
 
 invadeGo script:
 ```
