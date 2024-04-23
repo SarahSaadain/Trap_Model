@@ -31,3 +31,5 @@ $tool --N 1000 --gen 100 --genome mb:1 --cluster 15600 --rr 4 --rep 100 --u 0.1 
 $tool --N 1000 --gen 100 --genome mb:1 --cluster 13000 --rr 4 --rep 100 --u 0.1 --basepop 100 --steps 25 -x 0 > $folder/Dana.txt &
 $tool --N 1000 --gen 100 --genome mb:1 --cluster 10200 --rr 4 --rep 100 --u 0.1 --basepop 100 --steps 25 -x 0 > $folder/Dazt.txt
 ```
+make it excutable:
+chmod +x all_species.sh
