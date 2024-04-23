@@ -4,7 +4,7 @@ go build main.go
 ```
 I renamed executable into invadego_build
 
-Testrun to check differences between using --cluster kb:76.5 and 76500 (bases)
+Testrun to check differences between using --cluster kb:76.5 and --cluster 76500 (bases)
 ```
 folder="/Users/ssaadain/invasions/"
 tool="/Users/ssaadain/invadego/invadego_build"
