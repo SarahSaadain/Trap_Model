@@ -48,3 +48,29 @@ done
 ```
 
 I ran an R script (TrapModelFigure3.R) to only extract the columns that I need and transformed them from .gtf to .bed
+
+then I used the smRNA files (from the Toolbox, before the sRNA mapper) to sort the reads between 23-29nt
+```
+#!/bin/bash
+
+# Define input and output directories
+input_dir="/home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter_old"
+output_dir="/home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter_old"
+
+# Process each file in the input directory ending with ".no-dust"
+for file in "$input_dir"/*.no-dust; do
+    # Extract filename without extension
+    filename=$(basename "$file" .no-dust)
+    
+    # Create output file name with the "_piRNA" suffix
+    output_file="${output_dir}/${filename}_piRNA"
+    
+    # Filter reads between 23 and 29 nucleotides
+    awk 'BEGIN {RS="@"} {if (length($2) >= 23 && length($2) <= 29) print "@"$0}' "$file" > "$output_file"
+    
+    # Debug: Print output file name
+    echo "Output file created: $output_file"
+done
+```
+
+and then I use another mapper because the .map output of sRNAmapper is not ideal
