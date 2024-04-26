@@ -73,4 +73,9 @@ for file in "$input_dir"/*.no-dust; do
 done
 ```
 
+doublecheck
+```
+awk '/^@/ {getline; print length}' Dana_ovaries_SRR23593056_trimmed.fq-collapsed.fastq_piRNA
+```
+
 and then I use another mapper because the .map output of sRNAmapper is not ideal
