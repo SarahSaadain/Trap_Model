@@ -49,7 +49,7 @@ done
 
 I ran an R script (TrapModelFigure3.R) to only extract the columns that I need and transformed them from .gtf to .bed
 
-then I used the smRNA files (from the Toolbox, before the sRNA mapper) to sort the reads between 23-29nt
+then I used the smRNA files from ovaries and somatic follicle cells (from the Toolbox, before the sRNA mapper) to sort the reads between 23-29nt
 ```
 #!/bin/bash
 
