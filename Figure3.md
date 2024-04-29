@@ -79,3 +79,64 @@ awk '/^@/ {getline; print length}' Dana_ovaries_SRR23593056_trimmed.fq-collapsed
 ```
 
 and then I use another mapper because the .map output of sRNAmapper is not ideal
+
+first index
+```
+for file in *.fna; do bwa index "$file"; done
+```
+
+then map using map.sh
+```
+#!/bin/bash
+# Check for correct number of arguments
+if [ "$#" -ne 1 ]; then
+ echo "Usage: $0 <scripts_folder>"
+ exit 1
+fi
+# Assigning arguments to variables
+INPUT_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
+GENOME_DIR="/home/vetlinux04/Sarah/trapmodel/ref"
+SCRIPTS_FOLDER="$1" # The folder containing the scripts
+# Iterate through the input directory
+for fastq_file in "${INPUT_DIR}"/*piRNA; do
+  # Extract the species prefix from the fastq file name
+  species_prefix=$(basename "$fastq_file" | cut -c 1-4)
+  # Find the corresponding genome file in the genome directory with the same species prefix
+  matching_genome=$(find "${GENOME_DIR}" -maxdepth 1 -type f -name "${species_prefix}_*.fna" | head -n 1)
+  if [ -n "$matching_genome" ]; then
+    echo "Matching Genome FNA: $matching_genome"
+    # Execute BWA-MEM command
+    bwa mem -t 4 "${matching_genome}" "${fastq_file}" > "${fastq_file}_aligned.sam"
+    echo "------------------------" # Separator line
+  else
+    echo "No matching genome found for $fastq_file."
+  fi
+done
+```
+
+then use sort.sh
+to convert .sam files to sorted BAM
+to sort and merge BED files
+```
+#!/bin/bash
+# Define paths to the .sam and .bed files
+SAM_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
+BED_DIR="/home/vetlinux04/Sarah/trapmodel/gtf_files"
+# Convert SAM files to sorted BAM
+for sam_file in "${SAM_DIR}"/*.sam; do
+    # Extract filename without extension
+    filename=$(basename "$sam_file" .sam)
+    # Convert SAM to sorted BAM
+    samtools view -bS "$sam_file" | samtools sort -o "${SAM_DIR}/${filename}.sorted.bam"
+done
+# Sort and merge BED files
+for bed_file in "${BED_DIR}"/*.bed; do
+    # Extract filename without extension
+    filename=$(basename "$bed_file" .bed)
+    # Sort BED file
+    bedtools sort -i "$bed_file" > "${BED_DIR}/${filename}.sorted.bed"
+    # Merge sorted BED file
+    bedtools merge -i "${BED_DIR}/${filename}.sorted.bed" > "${BED_DIR}/${filename}.sorted.merged.bed"
+done
+``
+
