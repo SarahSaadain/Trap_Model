@@ -56,6 +56,8 @@ then I used the smRNA files from ovaries and somatic follicle cells (from the To
 # Define input and output directories
 input_dir="/home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter_old"
 output_dir="/home/vetlinux04/Sarah/trapmodel/ovaries_without_adapter_old"
+#input_dir="/home/vetlinux04/Sarah/trapmodel/somatic_follicle_with_adapter"
+#output_dir="/home/vetlinux04/Sarah/trapmodel/somatic_follicle_with_adapter"
 
 # Process each file in the input directory ending with ".no-dust"
 for file in "$input_dir"/*.no-dust; do
@@ -114,7 +116,7 @@ for fastq_file in "${INPUT_DIR}"/*piRNA; do
 done
 ```
 
-then use sort.sh
+then use sort.sh (I split it up in sort.sh and sort2.sh for the Fig3 and the gtf_files)
 to convert .sam files to sorted BAM
 to sort and merge BED files
 ```
