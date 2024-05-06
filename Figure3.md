@@ -141,4 +141,22 @@ for bed_file in "${BED_DIR}"/*.bed; do
     bedtools merge -i "${BED_DIR}/${filename}.sorted.bed" > "${BED_DIR}/${filename}.sorted.merged.bed"
 done
 ``
+renamed the files using this:
+```
+#!/bin/bash
 
+# Directory where the sorted BAM files are located
+BAM_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
+
+# Loop through each BAM file
+for file in "$BAM_DIR"/*_aligned.sorted.bam; do
+    # Extract the filename without the directory path
+    filename=$(basename -- "$file")
+    
+    # Extract the part of the filename before "_trimmed" and add ".bam"
+    new_filename="${filename%%_trimmed*}.bam"
+    
+    # Copy and rename the file
+    cp "$file" "$BAM_DIR/$new_filename"
+done
+```
