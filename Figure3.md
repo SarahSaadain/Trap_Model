@@ -164,10 +164,10 @@ indexed the ref files using samtools faidx
 ```
 #!/bin/bash
 
-# Directory containing the .fna files
+#Directory containing the .fna files
 REF_DIR="/home/vetlinux04/Sarah/trapmodel/ref"
 
-# Loop through each .fna file in the directory
+#Loop through each .fna file in the directory
 for fna_file in "${REF_DIR}"/*.fna; do
     # Check if the file exists
     if [ -e "$fna_file" ]; then
