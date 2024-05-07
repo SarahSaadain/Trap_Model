@@ -140,7 +140,7 @@ for bed_file in "${BED_DIR}"/*.bed; do
     # Merge sorted BED file
     bedtools merge -i "${BED_DIR}/${filename}.sorted.bed" > "${BED_DIR}/${filename}.sorted.merged.bed"
 done
-``
+```
 renamed the files using this:
 
 ```
@@ -160,7 +160,9 @@ for file in "$BAM_DIR"/*_aligned.sorted.bam; do
     cp "$file" "$BAM_DIR/$new_filename"
 done
 ```
+
 indexed the ref files using samtools faidx
+
 ```
 #!/bin/bash
 
