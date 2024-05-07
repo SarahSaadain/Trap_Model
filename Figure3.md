@@ -96,7 +96,7 @@ if [ "$#" -ne 1 ]; then
  exit 1
 fi
 # Assigning arguments to variables
-INPUT_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
+INPUT_DIR="/home/vetlinux04/Sarah/trapmodel/sRNA_files"
 GENOME_DIR="/home/vetlinux04/Sarah/trapmodel/ref"
 SCRIPTS_FOLDER="$1" # The folder containing the scripts
 # Iterate through the input directory
@@ -116,13 +116,13 @@ for fastq_file in "${INPUT_DIR}"/*piRNA; do
 done
 ```
 
-then use sort.sh (I split it up in sort.sh and sort2.sh for the Fig3 and the gtf_files)
+then use sort.sh (I split it up in sort.sh and sort2.sh for the sRNA_files and the gtf_files)
 to convert .sam files to sorted BAM
 to sort and merge BED files
 ```
 #!/bin/bash
 # Define paths to the .sam and .bed files
-SAM_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
+SAM_DIR="/home/vetlinux04/Sarah/trapmodel/sRNA_files"
 BED_DIR="/home/vetlinux04/Sarah/trapmodel/gtf_files"
 # Convert SAM files to sorted BAM
 for sam_file in "${SAM_DIR}"/*.sam; do
@@ -146,7 +146,7 @@ renamed the files using this:
 ```
 #!/bin/bash
 #Directory where the sorted BAM files are located
-BAM_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
+BAM_DIR="/home/vetlinux04/Sarah/trapmodel/sRNA_files"
 
 #Loop through each BAM file
 for file in "$BAM_DIR"/*_aligned.sorted.bam; do
