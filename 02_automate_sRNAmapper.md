@@ -34,71 +34,17 @@ for fastq_file in "${INPUT_DIR}"/*collapsed.fastq.no-dust; do
 done
 ```
 
-
 to have executing permissions do:
 ```
 chmod +x 02_automate_sRNAmapper.sh
 ```
-
 
 run it
 ```
 nohup ./02_automate_sRNAmapper.sh /home/vetlinux04/Sarah/softwares > 02.log 2>&1 &
 ```
 
-
 one liner for trying single files and settings:
 ```
 perl sRNAmapper.pl -input ovaries/trimmed/Dana_ovaries_SRR23593056_trimmed.fq -genome ref/Dana_ref_GCA_018148915.1_ASM1814891v1_genomic.fna -alignments best
-```
-
-intersect
-```
-#!/bin/bash
-
-BAM_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
-BED_DIR="/home/vetlinux04/Sarah/trapmodel/gtf_files"
-for bam_file in "${BAM_DIR}"/*.bam; do
-    # Extract the species prefix from the .bam file name
-    species_prefix=$(basename "$bam_file" | cut -d '_' -f 1)
-
-    # Find the corresponding bed file in the BED_DIR with the same species prefix
-    matching_bed=$(find "${BED_DIR}" -maxdepth 1 -type f -name "${species_prefix}*.sorted.merged.bed" | head -n 1)
-
-    if [ -n "$matching_bed" ]; then
-        echo "Matching bed: $matching_bed"
-        # Constructing output file name
-        coverage_file="${BAM_DIR}/$(basename "$bam_file" .bam)_coverage.bed"
-        # run bedtools intersect with -bed option
-        bedtools intersect -a "${bam_file}" -b "${matching_bed}" -c -bed > "$coverage_file"
-        echo "------------------------"  # Separator line
-    else
-        echo "No matching bed found for $bam_file."
-    fi
-done
-```
-coverage
-```
-#!/bin/bash
-
-BAM_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
-BED_DIR="/home/vetlinux04/Sarah/trapmodel/gtf_files"
-for bam_file in "${BAM_DIR}"/*.bam; do
-    # Extract the species prefix from the .bam file name
-    species_prefix=$(basename "$bam_file" | cut -d '_' -f 1)
-
-    # Find the corresponding bed file in the BED_DIR with the same species prefix
-    matching_bed=$(find "${BED_DIR}" -maxdepth 1 -type f -name "${species_prefix}*.sorted.merged.bed" | head -n 1)
-
-    if [ -n "$matching_bed" ]; then
-        echo "Matching bed: $matching_bed"
-        # Constructing output file name
-        coverage_file="${BAM_DIR}/$(basename "$bam_file" .bam)_coverage.bed"
-        # Calculate coverage directly
-        bedtools coverage -a "${matching_bed}" -b "${bam_file}" > "$coverage_file"
-        echo "------------------------"  # Separator line
-    else
-        echo "No matching bed found for $bam_file."
-    fi
-done
 ```
