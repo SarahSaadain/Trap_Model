@@ -142,13 +142,13 @@ for bed_file in "${BED_DIR}"/*.bed; do
 done
 ``
 renamed the files using this:
+
 ```
 #!/bin/bash
-
-# Directory where the sorted BAM files are located
+#Directory where the sorted BAM files are located
 BAM_DIR="/home/vetlinux04/Sarah/trapmodel/Fig3"
 
-# Loop through each BAM file
+#Loop through each BAM file
 for file in "$BAM_DIR"/*_aligned.sorted.bam; do
     # Extract the filename without the directory path
     filename=$(basename -- "$file")
@@ -158,5 +158,23 @@ for file in "$BAM_DIR"/*_aligned.sorted.bam; do
     
     # Copy and rename the file
     cp "$file" "$BAM_DIR/$new_filename"
+done
+```
+indexed the ref files using samtools faidx
+```
+#!/bin/bash
+
+# Directory containing the .fna files
+REF_DIR="/home/vetlinux04/Sarah/trapmodel/ref"
+
+# Loop through each .fna file in the directory
+for fna_file in "${REF_DIR}"/*.fna; do
+    # Check if the file exists
+    if [ -e "$fna_file" ]; then
+        # Run samtools faidx on the .fna file
+        samtools faidx "$fna_file"
+    else
+        echo "File not found: $fna_file"
+    fi
 done
 ```
