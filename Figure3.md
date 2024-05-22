@@ -180,3 +180,27 @@ for fna_file in "${REF_DIR}"/*.fna; do
     fi
 done
 ```
+
+---
+instead of mapping again with bwa-mem I try to change the .map files by deleting the long name in the 1st column
+and making them .eland files
+```
+import os
+import glob
+
+# Get a list of all .map files in the current directory
+map_files = glob.glob("*.map")
+
+for input_file in map_files:
+    output_file = input_file + ".eland"
+    
+    with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
+        for line in infile:
+            parts = line.split('\t')
+            if parts:
+                first_col = parts[0].split(' ')[0]
+                new_line = first_col + '\t' + '\t'.join(parts[1:])
+                outfile.write(new_line + '\n')
+
+print("Processing complete.")
+```
