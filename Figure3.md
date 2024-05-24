@@ -204,3 +204,36 @@ for input_file in map_files:
 
 print("Processing complete.")
 ```
+
+-----
+wrote a pythonscript called coverage.py which extracts the important columns from the eland
+
+```
+import argparse
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Covert ELAND to bedgraph.")
+parser.add_argument("eland", help="path to eland file")
+args = parser.parse_args()
+
+with open(args.eland, "r") as ELA:
+    chromosome = ""
+    coverage = {}
+    for i, line in enumerate(ELA):
+        line = line.split('\t')
+        if (line[0]!=chromosome) and (i!=0):
+            for p, c in coverage.items():
+                print(chromosome + '\t' + str(p) + '\t' + str(c))
+            coverage = {}
+        chromosome = line[0]
+        pos = int(line[1])
+        readlen = len(line[2])
+        for base in range(readlen):
+            if pos in coverage:
+                coverage[pos] = coverage[pos]+1
+            else:
+                coverage[pos] = 1
+            pos = pos+1
+```
+and then do this oneline to loop through all eland files
+for file in *.eland; do python coverage.py "$file" > "${file%_trimmed.fq-collapsed.fastq.no-dust.map.eland}.bedgraph"; done
