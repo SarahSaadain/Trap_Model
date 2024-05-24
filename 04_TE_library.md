@@ -42,10 +42,6 @@ done
 echo "Indexing of .fa.gz files in $input_directory is complete."
 
 ```
-
-make sure to use this before:
-```chmod +x index.sh```
-
 then execute the script by
 ```
 ./index.sh
@@ -86,11 +82,6 @@ done
 
 echo "Output files saved in the same directory as the input."
 
-````
-
-and again do chmod before
-```
-chmod +x extract_lines.sh
 ```
 
 and do this to execute
