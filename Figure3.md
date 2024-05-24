@@ -236,4 +236,6 @@ with open(args.eland, "r") as ELA:
             pos = pos+1
 ```
 then this oneliner to loop through all eland files and make them .bedgraphs
+```
 for file in *.eland; do python coverage.py "$file" > "${file%_trimmed.fq-collapsed.fastq.no-dust.map.eland}.bedgraph"; done
+```
