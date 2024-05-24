@@ -183,7 +183,7 @@ done
 
 ---
 instead of mapping again with bwa-mem I try to change the .map files by deleting the long name in the 1st column
-and making them .eland files
+the .map files have eland format so I change the name to .eland
 ```
 import os
 import glob
