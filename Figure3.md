@@ -184,6 +184,7 @@ done
 ---
 instead of mapping again with bwa-mem I try to change the .map files by deleting the long name in the 1st column
 the .map files have eland format so I change the name to .eland
+done for ovary and follicle
 ```
 import os
 import glob
@@ -206,7 +207,8 @@ print("Processing complete.")
 ```
 
 -----
-coverage.py extracts the important columns from the eland
+coverage.py calculates the coverage for each position
+done for ovary and follicle
 
 ```
 import argparse
@@ -236,6 +238,7 @@ with open(args.eland, "r") as ELA:
             pos = pos+1
 ```
 then this oneliner to loop through all eland files and make them .bedgraphs
+done for ovary and follicle
 ```
 for file in *.eland; do python coverage.py "$file" > "${file%_trimmed.fq-collapsed.fastq.no-dust.map.eland}.bedgraph"; done
 ```
