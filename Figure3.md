@@ -206,7 +206,7 @@ print("Processing complete.")
 ```
 
 -----
-wrote a pythonscript called coverage.py which extracts the important columns from the eland
+coverage.py extracts the important columns from the eland
 
 ```
 import argparse
@@ -235,5 +235,5 @@ with open(args.eland, "r") as ELA:
                 coverage[pos] = 1
             pos = pos+1
 ```
-and then do this oneline to loop through all eland files
+then this oneliner to loop through all eland files and make them .bedgraphs
 for file in *.eland; do python coverage.py "$file" > "${file%_trimmed.fq-collapsed.fastq.no-dust.map.eland}.bedgraph"; done
