@@ -230,12 +230,13 @@ with open(args.eland, "r") as ELA:
         chromosome = line[0]
         pos = int(line[1])
         readlen = len(line[2])
-        for base in range(readlen):
-            if pos in coverage:
-                coverage[pos] = coverage[pos]+1
-            else:
-                coverage[pos] = 1
-            pos = pos+1
+        if (readlen>22) and (readlen<30):
+            for base in range(readlen):
+                if pos in coverage:
+                    coverage[pos] = coverage[pos]+1
+                else:
+                    coverage[pos] = 1
+                pos = pos+1
 ```
 then this oneliner to loop through all eland files and make them .bedgraphs
 done for ovary and follicle
