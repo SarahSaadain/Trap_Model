@@ -243,3 +243,10 @@ done for ovary and follicle
 ```
 for file in *.eland; do python coverage.py "$file" > "${file%_trimmed.fq-collapsed.fastq.no-dust.map.eland}.bedgraph"; done
 ```
+
+did stuff in R
+
+and then get the reads per sample in the terminal with this:
+```
+cat Dazt_ovaries_SRR23593055_trimmed.fq | grep -v '@' | grep -v '?' | grep -v '+' | grep -v '-' | awk 'length($0) > 22 && length($0) < 30' | wc -l > Dazt_ovaries_SRR23593055.tsv
+```
