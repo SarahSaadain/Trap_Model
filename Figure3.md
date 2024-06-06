@@ -250,3 +250,41 @@ and then get the reads per sample in the terminal with this:
 ```
 cat Dazt_ovaries_SRR23593055_trimmed.fq | grep -v '@' | grep -v '?' | grep -v '+' | grep -v '-' | awk 'length($0) > 22 && length($0) < 30' | wc -l > Dazt_ovaries_SRR23593055.tsv
 ```
+extract all the necessary info with this python script:
+```
+import os
+
+# Define the output file
+output_file = 'combined_file.tsv'
+
+# Check if the output file already exists
+file_exists = os.path.isfile(output_file)
+
+# Write the header to the output file if it does not exist
+if not file_exists:
+    with open(output_file, 'w') as outfile:
+        outfile.write('Species\tTissue\tSRR\tReads\n')
+
+# Loop through each .tsv file in the current directory
+for filename in os.listdir('.'):
+    if filename.endswith('.tsv') and filename != output_file:
+        # Split the filename into components
+        parts = filename.split('_')
+        
+        # Ensure the filename has exactly three parts before the extension
+        if len(parts) >= 3:
+            species = parts[0]
+            tissue = parts[1]
+            srr = parts[2].split('.')[0]  # Remove the .tsv extension
+            
+            # Read the number in the .tsv file
+            with open(filename, 'r') as infile:
+                for line in infile:
+                    reads = line.strip()
+                    # Append the data to the output file
+                    with open(output_file, 'a') as outfile:
+                        outfile.write(f'{species}\t{tissue}\t{srr}\t{reads}\n')
+        else:
+            print(f"Skipping file with unexpected format: {filename}")
+```
+
