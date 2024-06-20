@@ -245,7 +245,34 @@ done for ovary and follicle
 ```
 for file in *.eland; do python coverage.py "$file" > "${file%_trimmed.fq-collapsed.fastq.no-dust.map.eland}.bedgraph"; done
 ```
+next I get the coverage per cluster with cluster-coverage.py
+```
+import argparse
 
+# Parse command-line arguments
+parser = argparse.ArgumentParser(description="Extract coverage of pirna clusters from bedgraph")
+parser.add_argument("bedgraph", help="path to bedgraph file")
+parser.add_argument("bed", help="path to bed file")
+args = parser.parse_args()
+
+with open(args.bedgraph, "r") as bedgraph, open(args.bed, "r") as bed:
+    total_cov = 0
+    species = args.bedgraph[0:4]
+    srr = args.bedgraph[13:-9]
+    for coord in bed:
+        bedgraph.seek(0)
+        coord = coord.split('\t')
+        chr = coord[0]
+        start = int(coord[1])
+        end = int(coord[2])
+        for line in bedgraph:
+            line = line.split('\t')
+            if (line[0]==chr) and (int(line[1])>=start) and (int(line[1])<=end):
+                total_cov += int(line[2])
+        cluster_cov = total_cov/(end-start)
+        print(species + '\t' + srr + '\t' + chr + '\t' + str(start) + '\t' + str(end) + '\t' + str(cluster_cov))
+        total_cov = 0
+```
 did stuff in R
 
 and then get the reads per sample in the terminal with this:
