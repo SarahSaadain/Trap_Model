@@ -16,4 +16,6 @@ looks better (mapping worked) its picking up the TE reads but the reads are too 
 
 I redo it with the ones with the trimming steps from Lopik et al where I did 3 trimming steps: Dmel_ovaries_SRR23593024_trimmed_final.fq
 
-
+Still not working, troubleshooting with Matt we think its the mapper that gives every small RNA a bad score so I changed from bwa mem to bwa aln as recommended in their manual:
+``` bwa aln dmel-all-transcript-r6.52_consensus_TEs.fasta ../Dmel_ovaries_SRR23593024_trimmed.fq > Dmel_ovaries_SRR23593024_aln.sai```and then
+```bwa samse dmel-all-transcript-r6.52_consensus_TEs.fasta Dmel_ovaries_SRR23593024_aln.sai ../Dmel_ovaries_SRR23593024_trimmed.fq > aln-se.sam```
