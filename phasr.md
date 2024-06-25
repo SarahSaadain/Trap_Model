@@ -4,5 +4,8 @@ concatinate this to the file dmel-all-chromosome-r6.57.fasta from https://ftp.fl
 upload dmel-all-chromosome-r6.57.fasta (containing the flybase Dmel ref and the curated TEs from Bergman) to vetlinux
 there infex dmel-all-chromosome-r6.57.fasta by doing ```bwa index dmel-all-chromosome-r6.57.fasta```
 then map by ```bwa mem -t 4 dmel-all-chromosome-r6.57.fasta Dmel_ovaries_SRR23593024_trimmed.fq > Dmel_ovaries_SRR23593024.sam```
-
+convert sam to bam file with
+```samtools view -S -b Dmel_ovaries_SRR23593024.sam > Dmel_ovaries_SRR23593024.bam````
+sort it with
+```samtools sort Dmel_ovaries_SRR23593024.bam -o Dmel_ovaries_SRR23593024.sorted.bam```
 
