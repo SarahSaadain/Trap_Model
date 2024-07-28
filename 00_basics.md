@@ -24,6 +24,12 @@ copy files from my computer to Roco / Vetlinux via jumphost:
 scp -o ProxyJump=NAME@pgnport.vu-wien.ac.at Desktop/Dana_ovaries_SRR23593056_fastqc.html vetlinux04@pgnsrv042.vu-wien.ac.at:/home/vetlinux04/Sarah/softwares
 ```
 
+```
+ssh -J <jump-server> <remote-target>
+```
+
+
+
 unzip the SRR files
 ```
 gzip -d /home/vetlinux04/Sarah/trapmodel/somatic_follicle_with_adapter/*.gz
